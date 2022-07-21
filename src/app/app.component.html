@@ -1,19 +1,10 @@
-<div class="container">
-  <h2>Bill Gates</h2>
-  <div class="about">
-    <img [src]="photoUrl" alt="" width="300" class="photo">
-    <p class="biography">{{biography}}</p>
+<div class="container mx-auto px-5 py-5">
+  <div class="grid shadow-md grid-cols-3 divide-x-2 bg-slate-200 divide-white rounded-md	overflow-hidden" >
+    <button class="py-3 hover:bg-slate-300" [class.bg-slate-300]="selectIdData === idx" *ngFor="let d of data; let idx = index" (click)="selectData(idx)">{{d.name | uppercase}}</button>
   </div>
-  
-  <div class="quotes">
-    <h2>Quotes</h2>
-  <app-quote class="quote" *ngFor="let q of quotes" [quote]='q' ></app-quote>
-  </div>
-  
-  <div class="links">
-  <h2>Links</h2>
-  <ul>
-    <li *ngFor="let l of links"><a href="{{l}}">{{l}}</a></li>
-  </ul>
+  <div class="p-4 border-dashed border-2 border-slate-300	 mt-5">
+    <p class="text-5xl my-3 font-bold ">{{data[selectIdData].title | uppercase}}</p>
+    <img class="w-[500px] shadow-md my-3 rounded-md" src="{{data[selectIdData].img}}" alt="" srcset="">
+    <p class="text-lg my-3">{{data[selectIdData].desc}}</p>
   </div>
 </div>

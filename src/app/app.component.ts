@@ -6,12 +6,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  photoUrl: string = 'https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcT12cP23udqvCqHW_2oAvK257g3oVQkv23tOumxtpfFOhHi8a5B'
-  biography: string = 'William Henry Gates III (born October 28, 1955) is an American business magnate, software developer, investor, author, and philanthropist. He is a co-founder of Microsoft, along with his late childhood friend Paul Allen. During his career at Microsoft, Gates held the positions of chairman, chief executive officer (CEO), president and chief software architect, while also being the largest individual shareholder until May 2014. He was a major entrepreneur of the microcomputer revolution of the 1970s and 1980s.'
-  quotes: string[] = ['If you think your teacher is tough, wait till you get a boss.' ,'Life is not fair — get used to it!',
-  'Success is a lousy teacher. It seduces smart people into thinking they can’t lose.', 'Be nice to nerds. Chances are you’ll end up working for one.']
-  links: string[] = ['https://en.wikipedia.org/wiki/Bill_Gates',
-  'https://www.gatesfoundation.org/',
-  'https://www.gatesnotes.com/',
-  'https://twitter.com/billgates']
+ data  = [{
+    name: "Biggest Car",
+    title: "БелАЗ-75710",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/BelAZ_haul_truck.jpg/1280px-BelAZ_haul_truck.jpg",
+    desc: "Недавно известный самосвал-гигант БелАЗ-75710 установил мировой рекорд по грузоподъёмности. На испытательном полигоне автомобиль перевёз груз весом в 503,5 тонны. Данный факт зафиксировал Алексей Свистунов, главный редактор Книги рекордов России. Машина установила рекорд в категории «самый большой карьерный самосвал». БелАЗ-75710 был представлен белорусам в сентябре 2013 года. Такие огромные машины, как правило, работают в карьерах, на нефтедобывающих платформах, в угледобывающей промышленности России. Длина данного экземпляра достигает 20 метров, а в высоту — восьми. Общая масса машины составляет 810 тонн; суммарная мощность двигателей — более 4600 лошадиных сил."
+  },
+
+ {
+    name: "Biggest Plane",
+    title: "Ан-225",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Antonov_An-225_Beltyukov-1.jpg/411px-Antonov_An-225_Beltyukov-1.jpg",
+    desc: "Ан-225 «Мрия» (укр. Мрія: «Мечта», по кодификации НАТО: англ. Cossack «Казак») — транспортный реактивный самолёт сверхбольшой грузоподъёмности разработки ОКБ имени О. К. Антонова. Был самым большим и грузоподъёмным самолётом за всю историю мировой авиацииПерейти к разделу «#Рекорды самолёта». Самолёт был спроектирован и построен в СССР в единственном экземпляре на Киевском механическом заводе (руководитель проекта — В. И. Толмачёв) в 1984—1988 годах[5][6]. Первый полёт был совершён 21 декабря 1988 года. Изначально было заложено две машины; только один экземпляр находился в лётном состоянии и эксплуатировался украинской компанией Antonov Airlines. В СССР имел бортовой номер СССР-82060, после распада СССР перешёл в собственность Украины и получил бортовой номер UR-82060. Второй экземпляр не достроен. Единственный лётный экземпляр разрушен в ангаре 25 февраля 2022 года в боях за аэропорт «Антонов» в ходе вторжения России на Украину."
+  }, {
+    name: "Largest Ship",
+    title: "Wonder of the Seas",
+    img: "https://seanews.ru/wp-content/uploads/2022/02/wonder-of-the-seas-sea-trials-768x512.jpg.webp",
+    desc: "Французская верфь Chantiers de l’Atlantique сдала в эксплуатацию самый большой в мире круизный лайнер – «Wonder of the Seas». Заказчик судна – американская круизная компания Royal Caribbean. Длина круизника составляет 362 м, ширина – 64 м, водоизмещение – 236,8 тыс. тонн. Это пятый и самый большой лайнер из серии Oasis, построенных для Royal Caribbean с 2009 года, начиная с «Oasis of the Seas». Водоизмещение остальных круизников этого класса – от 225 тыс. до 228 тыс. тонн. Пассажировместимость – 6988 человек, экипаж и персонал – 2,3 тыс. человек, количество кают – 2,8 тыс. В первый рейс «Wonder of the Seas» должен отправиться в марте. Это будет 7-дневный круиз из США на Карибские острова. Планируется, что летом лайнер будет курсировать по Средиземноморью."
+  }]
+
+  selectIdData: number = 1
+  selectData(id: number) {
+    this.selectIdData = id
+  }
 }
