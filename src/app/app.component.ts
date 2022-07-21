@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Search, getSearchFilms} from './films'
+import { HttpServiceService } from './http-service.service';
 
 @Component({
   selector: 'app-root',
@@ -6,27 +8,90 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
- data  = [{
-    name: "Biggest Car",
-    title: "БелАЗ-75710",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/03/BelAZ_haul_truck.jpg/1280px-BelAZ_haul_truck.jpg",
-    desc: "Недавно известный самосвал-гигант БелАЗ-75710 установил мировой рекорд по грузоподъёмности. На испытательном полигоне автомобиль перевёз груз весом в 503,5 тонны. Данный факт зафиксировал Алексей Свистунов, главный редактор Книги рекордов России. Машина установила рекорд в категории «самый большой карьерный самосвал». БелАЗ-75710 был представлен белорусам в сентябре 2013 года. Такие огромные машины, как правило, работают в карьерах, на нефтедобывающих платформах, в угледобывающей промышленности России. Длина данного экземпляра достигает 20 метров, а в высоту — восьми. Общая масса машины составляет 810 тонн; суммарная мощность двигателей — более 4600 лошадиных сил."
-  },
+  constructor(private httpService: HttpServiceService){}
 
- {
-    name: "Biggest Plane",
-    title: "Ан-225",
-    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Antonov_An-225_Beltyukov-1.jpg/411px-Antonov_An-225_Beltyukov-1.jpg",
-    desc: "Ан-225 «Мрия» (укр. Мрія: «Мечта», по кодификации НАТО: англ. Cossack «Казак») — транспортный реактивный самолёт сверхбольшой грузоподъёмности разработки ОКБ имени О. К. Антонова. Был самым большим и грузоподъёмным самолётом за всю историю мировой авиацииПерейти к разделу «#Рекорды самолёта». Самолёт был спроектирован и построен в СССР в единственном экземпляре на Киевском механическом заводе (руководитель проекта — В. И. Толмачёв) в 1984—1988 годах[5][6]. Первый полёт был совершён 21 декабря 1988 года. Изначально было заложено две машины; только один экземпляр находился в лётном состоянии и эксплуатировался украинской компанией Antonov Airlines. В СССР имел бортовой номер СССР-82060, после распада СССР перешёл в собственность Украины и получил бортовой номер UR-82060. Второй экземпляр не достроен. Единственный лётный экземпляр разрушен в ангаре 25 февраля 2022 года в боях за аэропорт «Антонов» в ходе вторжения России на Украину."
-  }, {
-    name: "Largest Ship",
-    title: "Wonder of the Seas",
-    img: "https://seanews.ru/wp-content/uploads/2022/02/wonder-of-the-seas-sea-trials-768x512.jpg.webp",
-    desc: "Французская верфь Chantiers de l’Atlantique сдала в эксплуатацию самый большой в мире круизный лайнер – «Wonder of the Seas». Заказчик судна – американская круизная компания Royal Caribbean. Длина круизника составляет 362 м, ширина – 64 м, водоизмещение – 236,8 тыс. тонн. Это пятый и самый большой лайнер из серии Oasis, построенных для Royal Caribbean с 2009 года, начиная с «Oasis of the Seas». Водоизмещение остальных круизников этого класса – от 225 тыс. до 228 тыс. тонн. Пассажировместимость – 6988 человек, экипаж и персонал – 2,3 тыс. человек, количество кают – 2,8 тыс. В первый рейс «Wonder of the Seas» должен отправиться в марте. Это будет 7-дневный круиз из США на Карибские острова. Планируется, что летом лайнер будет курсировать по Средиземноморью."
-  }]
+  searchResult?: getSearchFilms[] = [
+    {
+        "Title": "The Lord of the Rings: The Fellowship of the Ring",
+        "Year": "2001",
+        "imdbID": "tt0120737",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BN2EyZjM3NzUtNWUzMi00MTgxLWI0NTctMzY4M2VlOTdjZWRiXkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"
+    },
+    {
+        "Title": "The Lord of the Rings: The Return of the King",
+        "Year": "2003",
+        "imdbID": "tt0167260",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BNzA5ZDNlZWMtM2NhNS00NDJjLTk4NDItYTRmY2EwMWZlMTY3XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg"
+    },
+    {
+        "Title": "The Lord of the Rings: The Two Towers",
+        "Year": "2002",
+        "imdbID": "tt0167261",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BZGMxZTdjZmYtMmE2Ni00ZTdkLWI5NTgtNjlmMjBiNzU2MmI5XkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+    },
+    {
+        "Title": "Lord of War",
+        "Year": "2005",
+        "imdbID": "tt0399295",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMTYzZWE3MDAtZjZkMi00MzhlLTlhZDUtNmI2Zjg3OWVlZWI0XkEyXkFqcGdeQXVyNDk3NzU2MTQ@._V1_SX300.jpg"
+    },
+    {
+        "Title": "The Lord of the Rings",
+        "Year": "1978",
+        "imdbID": "tt0077869",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BOGMyNWJhZmYtNGQxYi00Y2ZjLWJmNjktNTgzZWJjOTg4YjM3L2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg"
+    },
+    {
+        "Title": "Lord of the Flies",
+        "Year": "1990",
+        "imdbID": "tt0100054",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BMDczN2I3NzItNjdlMS00YmNhLTkyODQtZGI1YWQ0NmViMTgwXkEyXkFqcGdeQXVyNjMwMjk0MTQ@._V1_SX300.jpg"
+    },
+    {
+        "Title": "Greystoke: The Legend of Tarzan, Lord of the Apes",
+        "Year": "1984",
+        "imdbID": "tt0087365",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BM2NmYjZjOGItYTQ0ZC00YjcyLTk3MWUtYzdmZjY1MGNkMDViXkEyXkFqcGdeQXVyNzc5MjA3OA@@._V1_SX300.jpg"
+    },
+    {
+        "Title": "Lord of the Flies",
+        "Year": "1963",
+        "imdbID": "tt0057261",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BM2FjM2VlYzgtYzI1OS00MTM2LWJmNjQtNTZkNTJjNzQzYzk5XkEyXkFqcGdeQXVyMzU4Nzk4MDI@._V1_SX300.jpg"
+    },
+    {
+        "Title": "Lord of Illusions",
+        "Year": "1995",
+        "imdbID": "tt0113690",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BNDg1OTc0MDQwNl5BMl5BanBnXkFtZTcwMjQ3NDk0NA@@._V1_SX300.jpg"
+    },
+    {
+        "Title": "Something the Lord Made",
+        "Year": "2004",
+        "imdbID": "tt0386792",
+        "Type": "movie",
+        "Poster": "https://m.media-amazon.com/images/M/MV5BYmMzYWY4MDUtOWQ4OC00YTY5LWExN2YtYzEyZWM5ZjUyZGQ5XkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_SX300.jpg"
+    }
+]
 
-  selectIdData: number = 1
-  selectData(id: number) {
-    this.selectIdData = id
+  selectIdx: number | null = null
+
+  getFilms(obj: Search) {
+    this.httpService.getFilms(obj.title, obj.year).subscribe((data: any) => {
+      this.searchResult = data.Search
+    })
+  }
+
+  getInfoFilm(id: number) {
+this.selectIdx = id
   }
 }
