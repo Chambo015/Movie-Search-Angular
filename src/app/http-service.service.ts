@@ -18,4 +18,7 @@ export class HttpServiceService {
       `http://www.omdbapi.com/?s=${film}&apikey=${this.token}`
     );
   }
+  getShortInfo(id: string) {
+    return this.http.get(`http://www.omdbapi.com/?i=${id}&apikey=${this.token}`);
+  }
 }

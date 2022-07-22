@@ -1,19 +1,35 @@
-
-
 <div class="container mx-auto">
-    <app-form class="my-5 flex justify-center" (searchFilm)="getFilms($event)"></app-form>
-    <div class="grid-cols-5 grid pb-8 grid-flow-row-dense mx-auto gap-3">
-        <div class="flex shadow-md justify-end cursor-pointer flex-col border  h-[400px] bg-no-repeat bg-top bg-[length:100%_auto]
-        hover:bg-[length:110%_auto] hover:bg-center transition-all duration-500" [ngStyle]="{ backgroundImage: 'url(' + film.Poster + ')'}"  *ngFor="let film of searchResult; let idx = index">
-
-            <div class="bg-gradient-to-t from-black font-semibold p-3 pt-9">
-                <p class="text-lg text-white ">{{film.Title}}</p>
-                <div class="flex justify-between">
-                    <p class="text-sm  text-slate-500">{{film.Year}}</p>
-                    <button class="btn text-xs text-white py-1 border px-2 rounded-md hover:bg-slate-800">More</button>
-                </div>
-            </div>
+  <app-form
+    class="my-5 flex justify-center"
+    (searchFilm)="getFilms($event)"
+  ></app-form>
+  <p>{{openModal | json}}</p>
+  <div class="grid-cols-3 2xl:grid-cols-5 grid pb-8 grid-flow-row-dense mx-auto gap-3">
+    <div
+      class="flex shadow-md justify-end cursor-pointer flex-col border h-[400px] bg-no-repeat bg-top bg-[length:100%_auto] hover:bg-[length:110%_auto] hover:bg-center transition-all duration-500"
+      [ngStyle]="{ backgroundImage: 'url(' + film.Poster + ')' }"
+      *ngFor="let film of searchResult"
+    >
+      <div class="bg-gradient-to-t from-black font-semibold p-3 pt-9">
+        <p class="text-lg text-white">{{ film.Title }}</p>
+        <div class="flex justify-between">
+          <p class="text-sm text-slate-500">{{ film.Year }}</p>
+          <button
+            class="btn text-xs text-white py-1 border px-2 rounded-md hover:bg-slate-800"
+            (click)="getInfoFilm(film.imdbID)"
+          >
+            More
+          </button>
         </div>
+      </div>
     </div>
+  </div>
 </div>
-<app-modal class="fixed w-100 top-0 bottom-0 right-0 left-0 bg-black/50"></app-modal>
+<app-modal
+  class="fixed w-full top-0 bottom-0 right-0 left-0 bg-black/50"
+  [idFilm]="idFilm"
+  [filmsInfo]="mapFilmInfo"
+  (closeModal)="openModal = false"
+  *ngIf="openModal"
+></app-modal>
+<p  *ngFor="let film of searchResult"> {{film}}</p>

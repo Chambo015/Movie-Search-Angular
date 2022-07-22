@@ -1,24 +1,23 @@
-<div class="w-[500px] backdrop-blur-sm bg-white/30 centerModal flex p-4">
-  <div class="basis-1/3 shrink-0">
+<div class="w-[700px]  bg-black centerModal flex rounded-md gap-7">
+  <div class="w-1/3 flex-shrink-0 relative before:absolute before:w-full before:h-full before:bg-gradient-to-l from-black">
     <img
-      class="rounded-md"
-      src="https://m.media-amazon.com/images/M/MV5BYmMzYWY4MDUtOWQ4OC00YTY5LWExN2YtYzEyZWM5ZjUyZGQ5XkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_SX300.jpg"
+      class="rounded-md w-full h-full object-cover"
+      [src]="film?.Poster"
       alt=""
       srcset=""
     />
   </div>
-  <div class="flex flex-col">
-    <p class="font-semibold">Something the Lord Made</p>
-    <p>Year: 2004</p>
-    <p>Runtime: 110 min</p>
-    <p>Genre: Drama</p>
-    <p>Director: Alik Meir</p>
-    <p>
-      A dramatization of the relationship between heart surgery pioneers Alfred
-      Blalock and Vivien Thomas.
-    </p>
-    <div class="flex">
-      <span class="py-1 px-2 border text-xs rounded-md">8.1/10</span>
+  <div class="flex flex-col text-white p-4 my-4 mr-3">
+    <p class="font-semibold text-xl mb-3">{{film?.Title}}</p>
+    <p><span class="text-slate-300">Year:</span> {{film?.Year}}</p>
+    <p><span class="text-slate-300">Runtime:</span> {{film?.Runtime}}</p>
+    <p><span class="text-slate-300">Genre:</span> {{film?.Genre}}</p>
+    <p ><span class="text-slate-300">Director:</span> {{film?.Director}}</p>
+    <p ><span class="text-slate-300">Actors:</span> {{film?.Actors}}</p>
+    <p class="my-4">{{film?.Plot}}</p>
+    <div class="flex flex-col items-start gap-2" *ngIf="film!.Ratings">
+      <span class="py-1 px-2 border rounded-md text-xs " *ngFor="let r of film!.Ratings">{{r.Source}} {{r.Value}}</span>
     </div>
   </div>
+  <button (click)="close()" class="text-gray-400 absolute py-1 px-2 top-3 right-3 text-xs rounded border border-gray-400 hover:bg-white/30">закрыть</button>
 </div>
