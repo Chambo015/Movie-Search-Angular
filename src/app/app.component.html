@@ -3,7 +3,6 @@
     class="my-5 flex justify-center"
     (searchFilm)="getFilms($event)"
   ></app-form>
-  <p>{{openModal | json}}</p>
   <div class="grid-cols-3 2xl:grid-cols-5 grid pb-8 grid-flow-row-dense mx-auto gap-3">
     <div
       class="flex shadow-md justify-end cursor-pointer flex-col border h-[400px] bg-no-repeat bg-top bg-[length:100%_auto] hover:bg-[length:110%_auto] hover:bg-center transition-all duration-500"
@@ -32,4 +31,3 @@
   (closeModal)="openModal = false"
   *ngIf="openModal"
 ></app-modal>
-<p  *ngFor="let film of searchResult"> {{film}}</p>
